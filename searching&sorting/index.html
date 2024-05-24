@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Operations Demo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            color: #343a40;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+
+        button {
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #bd2130;
+            border-color: #bd2130;
+        }
+
+        .result {
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        .found {
+            color: green;
+        }
+
+        .not-found {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Array Operations Demo</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Integer Array Operations</h2>
+                        <input type="text" class="form-control mb-3" id="intArrayInput"
+                            placeholder="Enter integers separated by commas">
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-primary mr-1 mb-2" onclick="sortIntArray('ascending')">Sort Ascending</button>
+                            <button class="btn btn-primary mb-2" onclick="sortIntArray('descending')">Sort Descending</button>
+                        </div>
+                        <button class="btn btn-primary btn-block" onclick="searchIntArray()">Search Number</button>
+                        <button class="btn btn-danger btn-block" onclick="clearIntoutput()">Clear </button>
+                        <p id="intArrayResult" class="result"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Named Entity Array Operations</h2>
+                        <input type="text" class="form-control mb-3" id="namedEntityInput"
+                            placeholder="Enter named entities separated by commas">
+                        <button class="btn btn-primary btn-block mb-2" onclick="processNamedEntities()">Process Entities</button>
+                        <button class="btn btn-danger btn-block" onclick="clearEntityoutput()">Clear </button>
+                        <p id="namedEntityResult" class="result"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function clearIntoutput() {
+            document.getElementById("intArrayInput").value = "";
+            document.getElementById("intArrayResult").innerText = "";
+        }
+
+        function clearEntityoutput() {
+            document.getElementById("namedEntityInput").value = "";
+            document.getElementById("namedEntityResult").innerText = "";
+        }
+
+        function sortIntArray(order) {
+            var input = document.getElementById("intArrayInput").value;
+            if (input == "") {
+                alert("Input field cannot be empty.");
+                return;
+            }
+            var intArray = input.split(",").map(Number);
+            if (order === 'ascending') {
+                intArray.sort(function (a, b) {
+                    return a - b;
+                });
+                document.getElementById("intArrayResult").innerText = "Sorted Array (Ascending): " + intArray.join(", ");
+            } else if (order === 'descending') {
+                intArray.sort(function (a, b) {
+                    return b - a;
+                });
+                document.getElementById("intArrayResult").innerText = "Sorted Array (Descending): " + intArray.join(", ");
+            } else {
+                alert("Invalid sorting order.");
+            }
+        }
+
+        function searchIntArray() {
+            var input = document.getElementById("intArrayInput").value;
+            if (input == "") {
+                alert("Input field cannot be empty.");
+                return;
+            }
+            var searchTerm = parseInt(prompt("Enter the integer to search for:"));
+            var intArray = input.split(",").map(Number);
+            var found = intArray.includes(searchTerm);
+            var resultText = "";
+            if (found) {
+                resultText = searchTerm + " found in the array.";
+                document.getElementById("intArrayResult").classList.add('found');
+                document.getElementById("intArrayResult").classList.remove('not-found');
+            } else {
+                resultText = searchTerm + " not found in the array.";
+                document.getElementById("intArrayResult").classList.add('not-found');
+                document.getElementById("intArrayResult").classList.remove('found');
+            }
+            document.getElementById("intArrayResult").innerText = resultText;
+        }
+
+        function processNamedEntities() {
+            var input = document.getElementById("namedEntityInput").value;
+            if (input == "") {
+                alert("Input field cannot be empty.");
+                return;
+            }
+            var namedEntities = input.split(",");
+            var result = "";
+            for (var i = 0; i < namedEntities.length; i++) {
+                result += namedEntities[i].trim().toUpperCase() + ", ";
+            }
+            document.getElementById("namedEntityResult").innerText = "Processed Entities: " + result.slice(0, -2);
+        }
+    </script>
+</body>
+
+</html>
