@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with OTP Verification</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            /* Light gray background */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            /* White container background */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            /* Dark gray heading */
+        }
+
+        form {
+            padding: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            /* Dark gray label text */
+        }
+
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da;
+            /* Light gray border */
+            border-radius: 4px;
+            font-size: 16px;
+            color: #495057;
+            /* Dark gray text */
+            background-color: #f5f5f5;
+            /* Light gray background */
+        }
+
+        button[type="submit"],
+        button[type="button"] {
+            background-color: #0a9a0e;
+            /* Blue button */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        button[type="submit"]:hover,
+        button[type="button"]:hover {
+            background-color: #5ebe61;
+            /* Darker blue on hover */
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Login with OTP Verification</h1>
+        <form id="loginForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Password:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="otpCode">Enter the OTP code sent to your phone:</label>
+            <input type="number" id="otpCode" name="otpCode" maxlength="6" minlength="6" required>
+
+            <button type="button" id="sendOTP">Send OTP</button>
+            <button type="submit">Login</button>
+        </form>
+        <div class="footer">
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        </div>
+    </div>
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // prevent form submission
+
+            // Get values from the form
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('phone').value;
+            var enteredOTP = document.getElementById('otpCode').value; // Get the entered OTP
+
+            // Check if the email and password match the stored credentials
+            var storedEmail = localStorage.getItem('userEmail');
+            var storedPassword = localStorage.getItem('userPassword');
+
+            if (email === storedEmail && password === storedPassword) {
+                if (verifyOTP(enteredOTP)) {
+                    alert('Login successful! Redirecting to resume page.');
+                    // Redirect to resume page
+                    window.location.href = 'CV.html';
+                } else {
+                    alert('Invalid OTP. Please Check!.');
+                }
+            } else {
+                alert('Invalid Email or Password. Please try again.');
+            }
+        });
+
+        document.getElementById('sendOTP').addEventListener('click', function () {
+            // Send OTP
+            
+                sendOTP();  
+            
+            
+        });
+
+        // Function to verify OTP
+        function verifyOTP(enteredOTP) {
+            // Get the OTP generated during sending
+            var generatedOTP = sessionStorage.getItem('otp_val');
+
+            // Check if the entered OTP matches the generated OTP
+            return enteredOTP === generatedOTP;
+        }
+
+        function sendOTP() {
+            const email = document.getElementById('email');
+            const otpverify = document.getElementsByClassName('otpverify')[0];
+
+            // Generating random number as OTP;
+            let otp_val = Math.floor(Math.random() * 10000);
+            let emailbody = `<h3>Your OTP is </h3>${otp_val}`;
+
+            // Store the generated OTP in session storage
+            sessionStorage.setItem('otp_val', otp_val);
+
+            Email.send({
+                SecureToken: "48a7185f-3c77-4035-af73-95f179924dda",
+                To: email.value,
+                From: "akhileshkulkarni1127@gmail.com",
+                Subject: "Your OTP is",
+                Body: emailbody
+            }).then(
+                message => {
+                    if (message === "OK") {
+                        alert("OTP sent to your email " + email.value);
+
+                        // Show the OTP verification input field
+                        otpverify.style.display = "block";
+                    }
+                }
+            );
+        }
+    </script>
+
+
+
+</body>
+
+</html>
