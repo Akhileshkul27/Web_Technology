@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akhilesh Kulkarni's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f7f6f6;
+            background-image: url('videobackground.mp4');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        header {
+            background-color: #0b87b4;
+            text-align: center;
+            padding: 20px;
+            color: white;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .body {
+            display: grid;
+            /* grid-template-areas:
+                'header header header'
+                'self education links'
+                'activities activities activities' 'experience experience experience' 'myvideo myvideo myvideo'
+                'contact contact contact'; */
+            grid-template-areas:
+                'header header header'
+                'self education links'
+                'activities activities acheivements'
+                'experience experience experience'
+                'myvideo myvideo myvideo'
+                'contact contact contact';
+            gap: 10px;
+            padding: 20px;
+            max-width: 1450px;
+            margin: auto;
+        }
+
+        .experience {
+            grid-area: experience;
+
+
+        }
+        .activities {
+            grid-area: activities;
+        }
+
+        .acheivements {
+            grid-area: acheivements;
+            background-color: #eff4f5;
+            color: black;
+            border-radius: 10px;
+        }
+
+
+        .body>div {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .self {
+            text-align: center;
+            grid-area: self;
+        }
+
+        .self img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid #0b87b4;
+            margin-bottom: 20px;
+        }
+
+        .self h2 {
+            margin: 0;
+            color: #333;
+        }
+
+        .self h3,
+        .self h4 {
+            margin: 0;
+            color: #666;
+        }
+
+        .education {
+            grid-area: education;
+            background-color: #eff4f5;
+            color: black;
+            border-radius: 10px;
+        }
+
+        .education h3 {
+            text-align: center;
+            padding: 10px;
+            background-color: #0b87b4;
+            margin-top: 0;
+            color: white;
+            font-weight: bolder;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .education table {
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+
+        .education th,
+        .education td {
+            border: 1px solid #0b87b4;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .links {
+            grid-area: links;
+            background-color: #0b87b4;
+            color: white;
+            border-radius: 10px;
+        }
+
+        .links h2 {
+            margin: 0;
+            text-align: center;
+            padding: 10px;
+            background-color: #0b87b4;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .links ul {
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .links li {
+            margin-top: 22px;
+            margin-bottom: 10px;
+            margin-left: 20px;
+            font-size: larger;
+        }
+
+        .links a {
+            text-align: left;
+            color: #0e0850;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .links a:hover {
+            color: rgb(160, 201, 243);
+        }
+
+        .contact {
+            grid-area: contact;
+            /* background-color: #0b87b4; */
+            /* color: rgb(235, 72, 72); */
+            border-radius: 10px;
+            text-align: center;
+        }
+
+
+        #myVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            /* Set the z-index to -1 to push it below other content */
+        }
+
+
+        .contact h4 {
+            margin: 10px 0;
+        }
+
+        .blink {
+            animation: blinker 1.9s linear infinite;
+            color: rgb(11, 54, 103);
+            font-family: sans-serif;
+        }
+
+        .experience,
+        .activities,
+        .acheivements {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience h3,
+        .activities h3,
+        .acheivements h3{
+            text-align: center;
+            padding: 10px;
+            background-color: #0b87b4;
+            margin-top: 0;
+            color: white;
+            font-weight: bolder;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .experience-list {
+            padding: 0;
+            /* margin-left: 5px; */
+        }
+
+        @keyframes blinker {
+            75% {
+                opacity: 0.1;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            .body {
+                grid-template-areas:
+                    'header'
+                    'self'
+                    'education'
+                    'links'
+                    'contact'
+                    'experience'
+                    'activities'
+                    'myvideo'
+                    'acheivements';
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Curriculum Vitae</h1>
+    </header>
+    <div class="body">
+        <video autoplay muted loop id="myVideo">
+            <source src="videobackground.mp4" type="video/mp4">
+        </video>
+        <div class="self">
+            <img src="./profile.jpg" alt="My PIC">
+            <h2>Akhilesh Kulkarni</h2>
+            <h3>27th October, 2003</h3>
+            <h4>"Live in the present with an eye on the future"</h4>
+        </div>
+
+        <div class="education">
+            <h3>Educational Details</h3>
+            <table>
+                <tr>
+                    <th>Education Type</th>
+                    <th>College</th>
+                    <th>Grades</th>
+                    <th>Year</th>
+                </tr>
+                <tr>
+                    <td>Under-Graduation</td>
+                    <td>VIT, Pune</td>
+                    <td>8.5 CGPA</td>
+                    <td>2021-2025</td>
+                </tr>
+                <tr>
+                    <td>12th/HSC</td>
+                    <td>Sangameshwar college, Solapur</td>
+                    <td>96.00%</td>
+                    <td>2020-2021</td>
+                </tr>
+                <tr>
+                    <td>10th/SSC</td>
+                    <td>Mahesh English School, Solapur</td>
+                    <td>96.00%</td>
+                    <td>2018-2019</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="links">
+            <h2>Links</h2>
+            <ul>
+                <li><a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i> Linkedin profile</a></li>
+                <li><a href="https://github.com/Akhileshkul27"><i class="fab fa-github"></i> GitHub profile</a></li>
+                <li><a href="https://leetcode.com/Akhilesh955/"><i class="fab fa-hackerrank"></i> Hackerrank profile</a></li>
+            </ul>
+        </div>
+        
+
+        <div class="contact">
+            <h4 class="blink">Mobile Number: 9552299929 | Whatsapp Number: 955225525 | Address: Bakul Hall, Bibwewadi,
+                Pune</h4>
+        </div>
+
+        <div class="experience">
+            <h3>Work Experience</h3>
+            <h4>The Robotics Forum: Electronics Software Developer</h4>
+            <ul class="experience-list">
+                Engineered and deployed PID control algorithms on 15+ robotic mechanisms, optimizing control and
+                ensuring stability.
+                Key contribution to problem-solving initiatives within the robotics club, enhancing competition
+                performance and technical capabilities.
+                <h4>Encoder-based Autonomous Locomotion</h4>
+                Developed and integrated encoder-based navigation algorithms to enable the robot to autonomously
+                navigate its environment. This achievement demonstrated a strong understanding of sensor fusion and
+                path-planning techniques.
+            </ul>
+        </div>
+
+
+        <div class="activities">
+            <h3>Activities</h3>
+            <h4>Robotics Level1 and Level2 workshop.</h4>
+            <ul class="activities-list">
+                <li>
+                    Mentor at The Robotics Forum - Organized workshops for more than 300 developers.
+                </li>
+            </ul>
+            <h4>Volunteer for Social Activity Muskaan.</h4>
+            <ul class="activities-list">
+                <li>
+                    Conducted lectures and quizes for orphan kids.
+                </li>
+            </ul>
+            <h4>Events at Vishwakarandak'22.</h4>
+            <ul class="activities-list">
+                <li>
+                    Organized and managed events at Tech Fest.
+                </li>
+            </ul>
+            <!-- Add your activities content here -->
+        </div>
+
+        <div class="acheivements">
+            <h3>Acheivements & Certifications</h3>
+            <ul>
+                <li>
+                    <h4>AIR 5 in National DD Robocon 2023 (IIT Delhi).</h4>
+                </li>
+                <li>
+                    <h4>Eyantra Robotics Competition 2024 (IIT Bombay) - Finalists.</h4>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
