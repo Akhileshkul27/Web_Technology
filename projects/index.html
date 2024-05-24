@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Relevance</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    /* Custom CSS */
+    body {
+      background-color: #f8f9fa; /* Light gray background */
+    }
+    .container {
+      margin-top: 50px; /* Spacing from the top */
+    }
+   
+    .nav-tabs {
+      border-bottom: 2px solid #007bff; /* Blue border bottom */
+    }
+    .nav-link {
+      color: #007bff !important; /* Blue text color */
+      font-weight: bold;
+      font-size: 25px;
+    }
+    .nav-link.active {
+      background-color: #0b7104; /* Blue background for active tab */
+      color: #34ad21 !important; /* White text color for active tab */
+    }
+    .tab-content {
+      padding: 20px 0; /* Spacing around tab content */
+    }
+    h3 {
+      color: #007bff; /* Blue heading color */
+      margin-top: 20px; /* Spacing from top */
+    }
+    p {
+      color: #6c757d; /* Gray paragraph text color */
+    }
+    .tab-title {
+      visibility:visible; /* Hide tab title by default */
+     } 
+     .nav-item:hover .tab-title {
+      visibility:visible; /* Show tab title on hover */
+     }  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mb-4 text-center">Project Relevance</h1>
+    <br>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="sdp-tab" data-toggle="tab" href="#sdp" role="tab" aria-controls="sdp" aria-selected="true">
+          <span class="tab-title">SDP Projects</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="edi-tab" data-toggle="tab" href="#edi" role="tab" aria-controls="edi" aria-selected="false">
+          <span class="tab-title">EDI Projects</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="dt-tab" data-toggle="tab" href="#dt" role="tab" aria-controls="dt" aria-selected="false">
+          <span class="tab-title">DT Projects</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="course-tab" data-toggle="tab" href="#course" role="tab" aria-controls="course" aria-selected="false">
+          <span class="tab-title">Course Projects</span>
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="sdp" role="tabpanel" aria-labelledby="sdp-tab">
+        <h3>SDP Projects</h3>
+        <p>The SDP courses teach students problem solving, critical thinking, project management, and teamwork skills. These help students in their other courses, projects, and career.</p>
+      </div>
+      <div class="tab-pane fade" id="edi" role="tabpanel" aria-labelledby="edi-tab">
+        <h3>EDI Projects</h3>
+        <p>Engineering Design and Innovation (EDI) typically involves semester-long projects that focus on applying engineering principles to solve real-world problems or create innovative solutions. These projects are often interdisciplinary, requiring collaboration between students from different engineering disciplines, and they provide valuable hands-on experience in the engineering design process..</p>
+      </div>
+      <div class="tab-pane fade" id="dt" role="tabpanel" aria-labelledby="dt-tab">
+        <h3>DT Projects</h3>
+        <p>Design Thinking (DT) is a methodology used to solve complex problems and create innovative solutions by focusing on human-centered design, empathy, and iterative prototyping. In the context of academic programs, DT often involves students engaging in research, analysis, and solution development with a strong emphasis on creativity and user-centric design.</p>
+      </div>
+      <div class="tab-pane fade" id="course" role="tabpanel" aria-labelledby="course-tab">
+        <h3>Course Projects</h3>
+        <p>Course-relevant projects that aim to provide students with practical knowledge from their courses, the focus is typically on applying theoretical concepts learned in the classroom to real-world scenarios. These projects serve as opportunities for students to deepen their understanding, gain hands-on experience, and develop skills that are directly applicable to their field of study.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
